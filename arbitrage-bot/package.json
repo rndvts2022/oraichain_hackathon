@@ -4,8 +4,7 @@
   "description": "",
   "main": "uniswap-v1.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node kucoin-uniswap-trade.js"
+    "start": "node arbitrage-v2.js"
   },
   "author": "",
   "license": "ISC",

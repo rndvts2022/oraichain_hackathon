@@ -32,18 +32,18 @@ services:
     networks:
         - trade_network
   
-#   arbitrage-bot: #name of the second service
-#     build: ./arbitrage-bot
-#     image: quangthuan1007/arbitrage-bot:1.0
-#     container_name: arbitrage-bot
-#     ports:
-#         - "3001:3001" #specify ports forewarding
-#     restart: always
-#     environment:
-#         - TRADE_SERVICE=http://trade-service:3000/arbitrage
-#         # - APP_PORT=3001
-#         - MONGO_URL=mongodb://mongodb/poster
-#     links:
-#         - trade-service
-#     networks:
-#         - trade_network
+  arbitrage-bot: #name of the second service
+    build: ./arbitrage-bot
+    image: quangthuan1007/arbitrage-bot:1.0
+    container_name: arbitrage-bot
+    ports:
+        - "3001:3001" #specify ports forewarding
+    restart: always
+    environment:
+        - TRADE_SERVICE=http://trade-service:3000/arbitrage
+        # - APP_PORT=3001
+        - MONGO_URL=mongodb://mongodb/trade
+    links:
+        - trade-service
+    networks:
+        - trade_network

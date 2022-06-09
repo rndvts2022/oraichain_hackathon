@@ -1,7 +1,6 @@
 const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-
 const TokenTradePairSchema = new Schema({
     owner: {
         type: String,
@@ -22,6 +21,5 @@ const TokenTradePairSchema = new Schema({
         default: Date.now
     },
 });
-
 
 mongoose.model('TokenTradePair', TokenTradePairSchema);

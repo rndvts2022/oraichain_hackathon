@@ -49,6 +49,7 @@ async function initNetwork() {
 }
 
 async function balanceInfo() {
+
     // balance from wallet
     let balance = await web3jsHelper.getBalance(user_wallet.address);
     const tokenABIRRequest = web3jsHelper.getTokenAbiRequest('mainnet', quoteToken)
@@ -89,7 +90,7 @@ async function doBuyUniswapSellKucoin() {
     let M1; // rate of Token pair on Uniswap
     let P1; // number of UOS after swap on Uniswap
 
-    let n2 = 50; // the last numbers of orderbooks on kucoin
+    let n2 = 100; // the last numbers of orderbooks on kucoin
     let M2; // average rate of Token pair on Kucoin
     let P2; // number of USDT after trading on Kucoin
 
@@ -238,13 +239,17 @@ async function doBuyKucoinSellUniswap() {
 
 }
 
+
 async function main() {
     await initNetwork()
+
+    await doBuyUniswapSellKucoin();
+
     while (true) {
-        await new Promise(r => setTimeout(r, 5000));
-        await doBuyUniswapSellKucoin()
-        await new Promise(r => setTimeout(r, 5000));
+        await new Promise(r => setTimeout(r, 600000));
         await doBuyKucoinSellUniswap()
+        await new Promise(r => setTimeout(r, 600000));
+        await doBuyUniswapSellKucoin()
     }
 }
 
