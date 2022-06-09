@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./head.ejs') %>
+
+    <body>
+        <div class="container-xxl position-relative bg-white d-flex p-0">
+            <!-- Spinner Start -->
+            <%- include('./loading.ejs') %>
+                <!-- Spinner End -->
+
+                <!-- Sidebar Start -->
+                <%- include('./sidebar.ejs') %>
+                    <!-- Sidebar End -->
+
+
+                    <!-- Content Start -->
+                    <div class="content">
+                        <!-- Navbar Start -->
+                        <%- include('./navbar.ejs') %>
+                            <!-- Navbar End -->
+
+
+                            <!-- Sale & Revenue Start -->
+                            <div class="container-fluid pt-4 px-4">
+                                <div class="row g-4" id="sale-revenue">
+
+                                </div>
+                            </div>
+                            <!-- Sale & Revenue End -->
+
+                            <!-- Recent Sales Start -->
+                            <div class="container-fluid pt-4 px-3">
+
+                                <!-- <div class="row g-4" style="margin-bottom: 2%;">
+                                    <div class="col-sm-12 col-xl-2">
+                                        <div class="bg-light rounded h-100 p-4">
+                                            <div class="btn-group" role="group">
+                                                <button type="button" class="btn btn-danger">SELL</button>
+                                                <button type="button" class="btn btn-success">BUY</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12 col-xl-3">
+                                        <div class="form-group">
+                                            <label for="dtp_input1" class="col-md-2 control-label">From
+                                                </label>
+                                            <div class="input-group date form_datetime col-md-5"
+                                                data-date="2022-09-22T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p"
+                                                data-link-field="dtp_input1">
+                                                <input class="form-control" size="16" type="text" value="" readonly>
+                                                <span class="input-group-addon"><span
+                                                        class="glyphicon glyphicon-remove"></span></span>
+                                                <span class="input-group-addon"><span
+                                                        class="glyphicon glyphicon-th"></span></span>
+                                            </div>
+                                            <input type="hidden" id="dtp_input1" value="" /><br />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12 col-xl-3">
+                                        <div class="form-group">
+                                            <label for="dtp_input1" class="col-md-2 control-label">To
+                                                </label>
+                                            <div class="input-group date form_datetime col-md-5"
+                                                data-date="2017-09-22T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p"
+                                                data-link-field="dtp_input1">
+                                                <input class="form-control" size="16" type="text" value="" readonly>
+                                                <span class="input-group-addon"><span
+                                                        class="glyphicon glyphicon-remove"></span></span>
+                                                <span class="input-group-addon"><span
+                                                        class="glyphicon glyphicon-th"></span></span>
+                                            </div>
+                                            <input type="hidden" id="dtp_input1" value="" /><br />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12 col-xl-2">
+                                        <div class="bg-light rounded h-100 p-4">
+                                            <div class="m-n2">
+                                                <button class="btn btn-primary w-100 m-2" type="button">Search</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
+
+                                <div class="bg-light text-center rounded p-4">
+                                    <div class="d-flex align-items-center justify-content-between mb-4">
+                                        <h6 class="mb-0" style="color: red;">Trading History</h6>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table text-start align-middle table-bordered table-hover mb-0">
+                                            <thead>
+                                                <tr class="text-dark">
+                                                    <th scope="col">Order</th>
+                                                    <th scope="col">Time</th>
+                                                    <th scope="col">Action</th>
+                                                    <th scope="col">Allowed Amount</th>
+                                                    <th scope="col">Kucoin Payment</th>
+                                                    <th scope="col">Uniswap Payment</th>
+                                                    <th scope="col">Profit</th>
+                                                    <th scope="col">Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="current-trade">
+
+                                            </tbody>
+                                        </table>
+                                        <button class="btn btn-outline-primary w-100 m-2" id="load-more" type="button">Load More</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Recent Sales End -->
+
+                            <!-- Footer Start -->
+                            <%- include('./foot.ejs') %>
+                                <!-- Footer End -->
+                    </div>
+                    <!-- Content End -->
+
+
+                    <!-- Back to Top -->
+                    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i
+                            class="bi bi-arrow-up"></i></a>
+        </div>
+
+
+
+        <!-- JavaScript Libraries -->
+        <%- include('./libjs.ejs') %>
+
+            <!-- Template Javascript -->
+            <script src="js/datetimePicker.js"></script>
+            <script src="js/helper.js"></script>
+            <script src="js/queue.js"></script>
+            <script src="/socket.io/socket.io.js"></script>
+            <script src="js/history.js"></script>
+    </body>
+
+</html>

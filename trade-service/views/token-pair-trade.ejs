@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./head.ejs') %>
+
+<body>
+    <div class="container-xxl position-relative bg-white d-flex p-0">
+        <!-- Spinner Start -->
+        <%- include('./loading.ejs') %>
+        <!-- Spinner End -->
+
+        <!-- Sidebar Start -->
+        <%- include('./sidebar.ejs') %>
+        <!-- Sidebar End -->
+
+
+        <!-- Content Start -->
+        <div class="content">
+            <!-- Navbar Start -->
+            <%- include('./navbar.ejs') %>
+            <!-- Navbar End -->
+
+            <!-- Sale & Revenue Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4" id="sale-revenue">
+
+                </div>
+            </div>
+            <!-- Sale & Revenue End -->
+
+            <!-- Recent Sales Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-light text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0" style="color: red;">Case 1: If rate UOS/USDT on Uni less than Kucoin</h6>
+                        <a class="thuan-flash" href="">Bot running</a>
+                    </div>
+                    <h6 class="mb-0" style="color: green; text-align: left;">Step 1: Buy UOS by USDT from Uniswap</h6>
+                    <p style="color: gray; text-align: left;">For ex: On Uniswap: Use 1000 USDT --> Got 900 UOS</p>
+                    <h6 class="mb-0" style="color: green; text-align: left;">Step 2. Sell UOS to Kucoin</h6>
+                    <p style="color: gray; text-align: left;">For ex: On kucoin: Sell 900 UOS --> Got 1111 USDT</p>
+                    <p style="color: gray; text-align: left;">And finally, we got profit: 1111 - 1000 = 111 USDT</p>
+                    
+                    <h6 class="mb-0" style="color: blueviolet; text-align: left;">Formula explain like that:</h6>
+                    <p style="color: gray; text-align: left;">let t = 10 (USDT); threshold of profit consider do execution </p>
+                    <p style="color: gray; text-align: left;">let g = 1 (USDT); current gas price on network (Ethereum Network, BSC Network, Matic Network...)</p>
+                    <p style="color: gray; text-align: left;">let kFees = 0.008 ~ (0.8%); Kucoin Fee on Trading</p>
+                    <p style="color: gray; text-align: left;">let uFees = 0.008 ~ (0.8%); Uniswap Fee on Trading</p>
+
+                    <p style="color: gray; text-align: left;">let b1 = 1000; (unit: USDT), number of USDT to buy UOS from Uniswap</p>
+                    <p style="color: gray; text-align: left;">let M1; (unit: USDT/UOS): rate of Token pair on Uniswap</p>
+                    <p style="color: gray; text-align: left;">let P1 = M1 * b1 * (1 - uFees); (unit: UOS), number of UOS after swap on Uniswap</p>
+                    <p style="color: gray; text-align: left;">let n2 = 50; the last numbers of orderbooks on kucoin</p>
+                    <p style="color: gray; text-align: left;">let M2; (unit: UOS/USDT): average rate of Token pair on Kucoin, use asks orderbooks: sell-side on Kucoin</p>
+                    <p style="color: gray; text-align: left;">let P2 = M2 * P1 * (1 - kFees); (unit USDT), number of USDT after trading on Kucoin</p>
+                    
+                    <p style="color: gray; text-align: left;">let p = P2 - b1 - g; (unit USDT), final Profit after arbitrage</p>
+                    <p style="color: gray; text-align: left;">let isExecution; (unit: Yes|No)  if p > t -> do arbitrage else do not </p>
+
+                  <div class="table-responsive">
+                        <table class="table text-start align-middle table-bordered table-hover mb-0">
+                            <thead>
+                                <tr class="text-dark">
+                                    <th scope="col">Time</th>
+                                    <th scope="col">b1 (USDT)</th>
+                                    <th scope="col">g (USDT)</th>
+                                    <th scope="col">M1 (USDT/UOS)</th>
+                                    <th scope="col">P1 (UOS)</th>
+                                    <th scope="col">M2 (UOS/USDT)</th>
+                                    <th scope="col">P2 (USDT)</th>
+                                    <th scope="col">p (USDT)</th>
+                                    <th scope="col">isExecution</th>
+                                </tr>
+                            </thead>
+                            <tbody id="current-sell">
+                                <!-- Append form execution -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Recent Sales End -->
+
+
+            <!-- Recent Sales Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-light text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0" style="color: red;">Case 2: If rate UOS/USDT on Uniswap higher than Kucoin</h6>
+                        <a class="thuan-flash" href="">Bot running</a>
+                    </div>
+                    <h6 class="mb-0" style="color: green; text-align: left;">Step 1. Buy UOS by USDT from Kucoin</h6>
+                    <p style="color: gray; text-align: left;">For ex: On Kucoin: Use 1000 USDT --> Got 900 UOS</p>
+                    <h6 class="mb-0" style="color: green; text-align: left;">Step 2. Sell UOS on Uniswap</h6>
+                    <p style="color: gray; text-align: left;">For ex: On Uniswap: Sell 900 UOS --> Got 1111 USDT</p>
+                    <p style="color: gray; text-align: left;">And finally, we got profit: 1111 - 1000 = 111 USDT</p>
+                    
+                    <h6 class="mb-0" style="color: blueviolet; text-align: left;">Formula explain like that:</h6>
+                    <p style="color: gray; text-align: left;">let t = 10 (USDT); threshold of profit consider do execution </p>
+                    <p style="color: gray; text-align: left;">let g = 1 (USDT); current gas price on network (Ethereum Network, BSC Network, Matic Network...)</p>
+                    <p style="color: gray; text-align: left;">let kFees = 0.008 ~ (0.8%); Kucoin Fee on Trading</p>
+                    <p style="color: gray; text-align: left;">let uFees = 0.008 ~ (0.8%); Uniswap Fee on Trading</p>
+
+                    <p style="color: gray; text-align: left;">let b1 = 1000; (unit: UOS), number of UOS need to buy from Kucoin</p>
+                    <p style="color: gray; text-align: left;">let n1 = 50; the last numbers of orderbooks on kucoin</p>
+                    <p style="color: gray; text-align: left;">let M1; (unit: UOS/USDT): average rate of Token pair on Kucoin, use bids orderbooks: buy-side on Kucoin</p>
+                    <p style="color: gray; text-align: left;">let P1 = b1 * M1 * (1 - kFees);; (unit: USDT), total of USDT need to pay after buying UOS from Kucoin</p>
+                    
+                    <p style="color: gray; text-align: left;">let M2; (unit: UOS/USDT): rate of Token pair on Uniswap</p>
+                    <p style="color: gray; text-align: left;">let P2 = M2 * b1 * (1 - uFees);; (unit USDT), number of USDT after trading on Kucoin</p>
+                    
+                    <p style="color: gray; text-align: left;">let p = P2 - P1 - g; (unit USDT), final Profit after arbitrage</p>
+                    <p style="color: gray; text-align: left;">let isExecution; (unit: Yes|No)  if p > t -> do arbitrage else do not </p>
+
+                  <div class="table-responsive">
+                        <table class="table text-start align-middle table-bordered table-hover mb-0">
+                            <thead>
+                                <tr class="text-dark">
+                                    <th scope="col">Time</th>
+                                    <th scope="col">b1 (USDT)</th>
+                                    <th scope="col">g (USDT)</th>
+                                    <th scope="col">M1 (UOS/USDT)</th>
+                                    <th scope="col">P1 (USDT)</th>
+                                    <th scope="col">M2 (UOS/USDT)</th>
+                                    <th scope="col">P2 (USDT)</th>
+                                    <th scope="col">p (USDT)</th>
+                                    <th scope="col">Execution</th>
+                                </tr>
+                            </thead>
+                            <tbody id="current-buy">
+                                <!-- Append form execution -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Recent Sales End -->
+
+            <!-- Footer Start -->
+            <%- include('./foot.ejs') %>
+            <!-- Footer End -->
+        </div>
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <%- include('./libjs.ejs') %>
+
+    <!-- Template Javascript -->
+    <script src="js/helper.js"></script>
+    <script src="js/queue.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/token-pair-trade.js"></script>
+</body>
+
+</html>

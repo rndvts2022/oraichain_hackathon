@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./head.ejs') %>
+
+<body>
+    <div class="container-xxl position-relative bg-white d-flex p-0">
+        <!-- Spinner Start -->
+        <%- include('./loading.ejs') %>
+        <!-- Spinner End -->
+
+        <!-- Sidebar Start -->
+        <%- include('./sidebar.ejs') %>
+        <!-- Sidebar End -->
+
+
+        <!-- Content Start -->
+        <div class="content">
+            <!-- Navbar Start -->
+            <%- include('./navbar.ejs') %>
+            <!-- Navbar End -->
+
+
+            <!-- Sale & Revenue Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4" id="sale-revenue">
+
+                </div>
+            </div>
+            <!-- Sale & Revenue End -->
+
+            <!-- Sales Chart Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="container-fluid" style="margin-top:10px">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table crypto-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Symbol</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">%(24h)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="market-price">
+                                        <!-- <tr>
+                                  <td>1</td>
+                                  <td><img style="width: 10%;" src="img/ethereum.jpg" /><span class="text-warning"> Ethereum</span></td>
+                                  <td>ETH</td>
+                                  <td>$134.655,333</td>
+                                  <td class="text-warning">$768.655</td>
+                                  <td class="text-warning">$122.998</td>
+                                  <td class="text-warning">$5.443.233,600</td>
+                                  <td class="text-success">%5.54 <i class="fa fa-arrow-up"></i></td>
+                                </tr> -->
+                                        <!-- <tr>
+                                  <td>1</td>
+                                  <td><img style="width: 10%;" src="img/usdt.jpg" /> <span class="text-warning"> Tether</span></td>
+                                  <td>USDT</td>
+                                  <td>$134.655,333</td>
+                                  <td class="text-warning">$768.655</td>
+                                  <td class="text-warning">$122.998</td>
+                                  <td class="text-warning">$5.443.233,600</td>
+                                  <td class="text-danger">%8.14 <i class="fa fa-arrow-down"></i></td>
+                                </tr>
+                                <tr>
+                                  <td>1</td>
+                                  <td><img style="width: 10%;" src="img/uos.jpg" /> <span class="text-warning"> Ultra</span></td>
+                                  <td>UOS</td>
+                                  <td>$134.655,333</td>
+                                  <td class="text-warning">$768.655</td>
+                                  <td class="text-warning">$122.998</td>
+                                  <td class="text-warning">$5.443.233,600</td>
+                                  <td class="text-success">%6.85 <i class="fa fa-arrow-up"></i></td>
+                                </tr> -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Sales Chart End -->
+
+            <!-- Sales Chart Start -->
+            <!-- <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-light text-center rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h6 class="mb-0">Worldwide Sales</h6>
+                                <a href="">Show All</a>
+                            </div>
+                            <canvas id="worldwide-sales"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-light text-center rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h6 class="mb-0">Salse & Revenue</h6>
+                                <a href="">Show All</a>
+                            </div>
+                            <canvas id="salse-revenue"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <!-- Sales Chart End -->
+
+            <!-- Recent Sales Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-light text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0" style="color: red;">Bot Front Running on Uniswap - Ethreum Pool</h6>
+                        <a class="thuan-flash" href="">Bot is triggering</a>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <p class="mb-0" style="font-style: italic;">Allowed Amount: 10 ETH </p>
+                        <p class="mb-0" style="font-style: italic;">Threshold Profit: 50 USDT</p>
+                        <p class="mb-0" style="font-style: italic;">From:02-20-2022 To:02-28-2022</p>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table text-start align-middle table-bordered table-hover mb-0">
+                            <thead>
+                                <tr class="text-dark">
+                                    <th scope="col"></th>
+                                    <th scope="col">Time</th>
+                                    <th scope="col">Method</th>
+                                    <th scope="col">Tx Hash</th>
+                                    <th scope="col">In Amount</th>
+                                    <th scope="col">Out Amount</th>
+                                    <th scope="col">Token In Address</th>
+                                    <th scope="col">Token Out Address</th>
+                                </tr>
+                            </thead>
+                            <tbody id="current-frontRun">
+                                <!-- <tr>
+                                    <td>${data.time}</td>
+                                    <td><a class="btn btn-sm btn-primary">${data.action}</a></td>
+                                    <td>${data.baseAmount}</td>
+                                    <td>${data.P}</td>
+                                    <td>${data.kFee}</td>
+                                    <td>${data.cg}-> ${data.txFees}</td>
+                                    <td>${data.totalSwap}</td>
+                                    <td>${data.b2}</td>
+                                    <td style="color: green;">${data.pr}</td>
+                                </tr> -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Recent Sales End -->
+
+            <!-- Footer Start -->
+            <%- include('./foot.ejs') %>
+            <!-- Footer End -->
+        </div>
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <%- include('./libjs.ejs') %>
+
+    <!-- Template Javascript -->
+    <script src="js/helper.js"></script>
+    <script src="js/queue.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/front-run.js"></script>
+</body>
+
+</html>
