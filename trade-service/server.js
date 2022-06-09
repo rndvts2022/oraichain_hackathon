@@ -12,7 +12,7 @@ const express = require('express'),
     TokenModel = require('./models/token'),
     TokenTradePairModel = require('./models/token_trade_pair'),
     routes = require('./routes/todoListRoutes'),
-    render = require('./routes/renderPage');;
+    render = require('./routes/renderPage');
 
 mongoose.Promise = global.Promise;
 mongoose.connect(mongoose_url);

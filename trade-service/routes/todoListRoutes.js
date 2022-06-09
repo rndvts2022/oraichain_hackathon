@@ -29,4 +29,6 @@ module.exports = function (app) {
 		.post(tokenTradedPairHandlers.findByTime);
 	app.route('/tokenTradedPair/findByTimeAndLimit')
 		.post(tokenTradedPairHandlers.findByTimeAndLimit);
+	app.route('/tokenTradedPair/findByTimeAndLimit')
+		.get(tokenTradedPairHandlers.findByTimeAndLimit);
 };
