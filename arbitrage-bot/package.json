@@ -4,7 +4,10 @@
   "description": "",
   "main": "uniswap-v1.js",
   "scripts": {
+<<<<<<< HEAD
     "test": "echo \"Error: no test specified\" && exit 1",
+=======
+>>>>>>> d384e9ea54805b71c09e4c55d1045b94c30b381f
     "start": "node arbitrage-v2.js"
   },
   "author": "",

@@ -54,6 +54,7 @@ render(app);
 TokenTradePair = mongoose.model('TokenTradePair');
 
 console.log(Date.now())
+console.log(new Date(new Date().toString().split('GMT')[0]+' UTC').toISOString().split('.')[0])
 
 app.post('/arbitrage', async (req, res, next) => {
     // console.log(req.body)
@@ -66,10 +67,12 @@ app.post('/arbitrage', async (req, res, next) => {
         typeTrade = false
     }
     
+    let current_time = new Date(new Date().toString().split('GMT')[0]+' UTC').toISOString().split('.')[0];
     let trade = {
         "owner": "thuanbq1" + Date.now(),
         "typeTrade": typeTrade,
-        "info":req.body
+        "info":req.body,
+        "created":current_time
     }
 
     console.log("tokenTradePair:", trade)

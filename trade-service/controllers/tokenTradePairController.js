@@ -32,16 +32,30 @@ exports.findByTimeAndLimit = function (req, res) {
   console.log(req.body.limit)
   console.log(req.body.typeTrade)
 
+<<<<<<< HEAD
   if (req.body.time === null || req.body.time === undefined) {
     return res.status(400).send({ ok: false, error: { message: 'Please attack field time', code: 400 } });
   }
+=======
+  // return res.status(200).send({ ok: true, result: "rat tot" });
 
-  if (req.body.limit === null || req.body.limit === undefined) {
-    return res.status(400).send({ ok: false, error: { message: 'Please attack field limit', code: 400 } });
-  }
+>>>>>>> d384e9ea54805b71c09e4c55d1045b94c30b381f
 
-  let time = req.body.time;
-  let limit = req.body.limit
+  // if (req.body.time === null || req.body.time === undefined) {
+  //   return res.status(400).send({ ok: false, error: { message: 'Please attack field time', code: 400 } });
+  // }
+
+  // if (req.body.limit === null || req.body.limit === undefined) {
+  //   return res.status(400).send({ ok: false, error: { message: 'Please attack field limit', code: 400 } });
+  // }
+
+  // let time = req.body.time;
+  // let limit = req.body.limit
+  
+  let current_time = new Date(new Date().toString().split('GMT')[0]+' UTC').toISOString().split('.')[0];
+  // let time = "2022-06-30T13:05:34";
+  let time = current_time;
+  let limit = 100;
 
   let condition;
   if (req.body.typeTrade == undefined || req.body.typeTrade == null) {
@@ -57,7 +71,7 @@ exports.findByTimeAndLimit = function (req, res) {
       created: {
         $lt: time
       },
-      typeTrade: req.body.typeTrade
+      // typeTrade: req.body.typeTrade
     }
   }
 
