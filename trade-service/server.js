@@ -14,8 +14,8 @@ const express = require('express'),
     routes = require('./routes/todoListRoutes'),
     render = require('./routes/renderPage');
 
-mongoose.Promise = global.Promise;
-mongoose.connect(mongoose_url);
+// mongoose.Promise = global.Promise;
+// mongoose.connect(mongoose_url);
 
 
 //init app
