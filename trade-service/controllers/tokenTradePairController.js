@@ -32,14 +32,8 @@ exports.findByTimeAndLimit = function (req, res) {
   console.log(req.body.limit)
   console.log(req.body.typeTrade)
 
-<<<<<<< HEAD
-  if (req.body.time === null || req.body.time === undefined) {
-    return res.status(400).send({ ok: false, error: { message: 'Please attack field time', code: 400 } });
-  }
-=======
   // return res.status(200).send({ ok: true, result: "rat tot" });
 
->>>>>>> d384e9ea54805b71c09e4c55d1045b94c30b381f
 
   // if (req.body.time === null || req.body.time === undefined) {
   //   return res.status(400).send({ ok: false, error: { message: 'Please attack field time', code: 400 } });

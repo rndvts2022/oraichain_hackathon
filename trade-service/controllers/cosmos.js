@@ -2,8 +2,8 @@ const path = require('path');
 const fetch = require('isomorphic-fetch');
 const { DirectSecp256k1HdWallet } = require("@cosmjs/proto-signing");
 const { stringToPath } = require("@cosmjs/crypto");
-const cosmwasm = require('@cosmjs/cosmwasm-stargate');
 const { GasPrice } = require('@cosmjs/cosmwasm-stargate/node_modules/@cosmjs/stargate/build');
+const cosmwasm = require('@cosmjs/cosmwasm-stargate');
 require('dotenv').config({ path: path.resolve(__dirname, process.env.NODE_ENV ? `.env.${process.env.NODE_ENV}` : ".env") })
 
 // .env file
@@ -165,4 +165,6 @@ const collectReports = async (url, contractAddr, requestId) => {
     return reports.data;
 }
 
-demo();
+// demo();
+
+console.log()

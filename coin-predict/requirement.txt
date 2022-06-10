@@ -1,0 +1,15 @@
+Cython
+scikit-build
+cmake
+opencv-python
+tensorflow==1.13.1
+keras==2.2.4
+numpy
+flask
+flask_cors
+requests
+sklearn
+pillow
+h5py < 3.0.0
+pandas
+xlrd==1.2.0
