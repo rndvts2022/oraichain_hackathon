@@ -1,8 +1,11 @@
 
 $("#button-get-info").click(function () {
 
+    // let url_arbitrages = "http://66.42.61.9:3000/tokenTradedPair/findByTimeAndLimi";
+    let url_arbitrages = "http://localhost:3000/arbitrage/findByTime"
+
     $.ajax({
-        url: "http://66.42.61.9:3000/tokenTradedPair/findByTimeAndLimit",
+        url: url_arbitrages,
         type: "POST",
         dataType: "json",
         contentType: "application/json; charset=utf-8",

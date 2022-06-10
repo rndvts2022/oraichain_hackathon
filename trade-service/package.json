@@ -7,13 +7,11 @@
     "run": "node server.js"
   },
   "dependencies": {
-    "@cosmjs/proto-signing": "^0.28.4",
     "body-parser": "^1.19.2",
     "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
-    "dotenv": "^5.0.1",
     "ejs": "^3.1.6",
     "express": "^4.16.4",
     "express-session": "^1.17.2",
@@ -24,7 +22,14 @@
     "mongoose": "^5.0.16",
     "morgan": "~1.9.0",
     "pusher": "^1.5.1",
-    "socket.io": "^4.4.1"
+    "socket.io": "^4.4.1",
+    "@cosmjs/cosmwasm-stargate": "^0.25.0",
+    "@cosmjs/crypto": "^0.26.5",
+    "@cosmjs/math": "^0.26.5",
+    "@cosmjs/proto-signing": "^0.26.5",
+    "@cosmjs/stargate": "^0.27.1",
+    "dateformat": "^5.0.3",
+    "dotenv": "^16.0.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

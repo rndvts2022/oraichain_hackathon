@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = function (app) {
+	const arbitrageHandlers = require('../controllers/arbitrage.js')
 	const tokenHandlers = require('../controllers/tokenController.js')
 	const tokenTradedPairHandlers = require('../controllers/tokenTradePairController')
 
@@ -24,6 +25,9 @@ module.exports = function (app) {
 	// 	.post(tokenTradedPairHandlers.addNew);
 	// app.route('/tokenTradedPair/findByOwner/:owner')
 	// 	.get(tokenTradedPairHandlers.findByTokenTradePairOwner);
+
+	app.route('/arbitrage/findByTime')
+		.post(arbitrageHandlers.findByTime);
 
 	app.route('/tokenTradedPair/time')
 		.post(tokenTradedPairHandlers.findByTime);
