@@ -170,7 +170,7 @@ async function doBuyKucoinSellUniswap() {
     const kFees = process.env.kFees // Kucoin Fee on Trading
     const uFees = process.env.uFees // Uniswap Fee on Trading - maybe this value change realtime
 
-    let n1 = 50; // the last numbers of orderbooks on kucoin
+    let n1 = 100; // the last numbers of orderbooks on kucoin
     let b1 = 1000; // number of UOS need to buy from Kucoin
     let M1; // average rate of Token pair on Kucoin
     let P1; // total of USDT need to pay after buying UOS from Kucoin
@@ -246,10 +246,17 @@ async function main() {
     await doBuyUniswapSellKucoin();
 
     while (true) {
+
         await new Promise(r => setTimeout(r, 600000));
         await doBuyKucoinSellUniswap()
         await new Promise(r => setTimeout(r, 600000));
         await doBuyUniswapSellKucoin()
+
+        // await new Promise(r => setTimeout(r, 10000));
+        // await doBuyKucoinSellUniswap()
+        // await new Promise(r => setTimeout(r, 10000));
+        // await doBuyUniswapSellKucoin()
+        
     }
 }
 

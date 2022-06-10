@@ -32,11 +32,11 @@ function createChart1(chartID, trades) {
 
     for (let i = 0; i < trades.length; i++) {
 
-        if (trades[i].typeTrade == false) {
+        if (trades[i].typeTrade == true) {
 
             if (prices.length < 15) {
                 prices.push(trades[i].info.p)
-                times.push(trades[i].created)
+                times.push(formatDate(trades[i].created))
             } else {
                 break;
             }
@@ -55,7 +55,7 @@ function createChart1(chartID, trades) {
                 {
                     label: 'Buy Kucoin - Sell Uniswap',
                     data: prices.reverse(),
-                    borderColor: 'pink',
+                    borderColor: 'black',
                 }
             ]
         },
@@ -81,7 +81,7 @@ function createChart2(chartID, trades) {
 
             if (prices.length < 15) {
                 prices.push(trades[i].info.p)
-                times.push(trades[i].created)
+                times.push(formatDate(trades[i].created))
             } else {
                 break;
             }
@@ -100,7 +100,7 @@ function createChart2(chartID, trades) {
                 {
                     label: 'Buy Uniswap - Sell Kucoin',
                     data: prices.reverse(),
-                    borderColor: 'blue',
+                    borderColor: 'black',
                 }
             ]
         },
@@ -127,15 +127,10 @@ $(function () {
 
 });
 
-function formatDate(mydate) {
+function formatDate(str) {
 
-    let str = mydate;
-    let date = moment(str);
-    return date.format('llll');
-
-    // const formated_Date = mydate;
-    // const date = new Date(formated_Date) // formated_Date - SDK returned date
-
-    // return `${date.getFullYear()}: ${date.getMonth() + 1}: ${date.getDay() + 1}: ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+    // console.log(str.substring(0,10) + " " + str.substring(11, 19));
+    // return str.substring(0,10) + " " + str.substring(11, 19);
+    return  str.substring(11, 19);
 
 }
