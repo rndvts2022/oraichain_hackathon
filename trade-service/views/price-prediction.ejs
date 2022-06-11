@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./head.ejs') %>
+
+<body>
+    <div class="container-xxl position-relative bg-white d-flex p-0">
+        <!-- Spinner Start -->
+        <%- include('./loading.ejs') %>
+        <!-- Spinner End -->
+
+        <!-- Sidebar Start -->
+        <%- include('./sidebar.ejs') %>
+        <!-- Sidebar End -->
+
+
+        <!-- Content Start -->
+        <div class="content">
+            <!-- Navbar Start -->
+            <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
+                <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+                    <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
+                </a>
+                <a href="#" class="sidebar-toggler flex-shrink-0">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <form class="d-none d-md-flex ms-4">
+                    <input class="form-control border-0" type="search" placeholder="Search">
+                </form>
+                <div class="navbar-nav align-items-center ms-auto">
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="fa fa-envelope me-lg-2"></i>
+                            <span class="d-none d-lg-inline-flex">Message</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                            <a href="#" class="dropdown-item">
+                                <div class="d-flex align-items-center">
+                                    <img class="rounded-circle" src="img/vts_logo.jpg" alt=""
+                                        style="width: 40px; height: 40px;">
+                                    <div class="ms-2">
+                                        <h6 class="fw-normal mb-0">Jhon send you a message</h6>
+                                        <small>15 minutes ago</small>
+                                    </div>
+                                </div>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                <div class="d-flex align-items-center">
+                                    <img class="rounded-circle" src="img/vts_logo.jpg" alt=""
+                                        style="width: 40px; height: 40px;">
+                                    <div class="ms-2">
+                                        <h6 class="fw-normal mb-0">Jhon send you a message</h6>
+                                        <small>15 minutes ago</small>
+                                    </div>
+                                </div>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                <div class="d-flex align-items-center">
+                                    <img class="rounded-circle" src="img/vts_logo.jpg" alt=""
+                                        style="width: 40px; height: 40px;">
+                                    <div class="ms-2">
+                                        <h6 class="fw-normal mb-0">Jhon send you a message</h6>
+                                        <small>15 minutes ago</small>
+                                    </div>
+                                </div>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item text-center">See all message</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="fa fa-bell me-lg-2"></i>
+                            <span class="d-none d-lg-inline-flex">Notification</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                            <a href="#" class="dropdown-item">
+                                <h6 class="fw-normal mb-0">Profile updated</h6>
+                                <small>15 minutes ago</small>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                <h6 class="fw-normal mb-0">New user added</h6>
+                                <small>15 minutes ago</small>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                <h6 class="fw-normal mb-0">Password changed</h6>
+                                <small>15 minutes ago</small>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item text-center">See all notifications</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <img class="rounded-circle me-lg-2" src="img/vts_logo.jpg" alt=""
+                                style="width: 40px; height: 40px;">
+                            <span class="d-none d-lg-inline-flex">R&D - VTS</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                            <a href="#" class="dropdown-item">My Profile</a>
+                            <a href="#" class="dropdown-item">Settings</a>
+                            <a href="#" class="dropdown-item">Log Out</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <!-- Navbar End -->
+
+
+            <div class="container pt-4 px-4">
+                <div class="row g-4">
+                    <!-- Options -->
+                    <div class="col-sm-12 col-xl-12">
+
+                        <div class="row justify-content-center">
+                            <div style="display: inline-block;" class="py-1 text-primary">
+                                <h1 style="text-align: center;"> ORAICHAIN HACKATHON 2022</h1>
+                                <h2 style="text-align: center;"> Price Prediction Service</h2>
+                            </div>
+                        </div>
+
+                        <div class="row my-3">
+                            <div class="col">
+                                <!-- <div class="row mx-1 fs-5">Rate Different</div> -->
+                                <div class="alert alert-success p-1" id="current_time" role="alert"
+                                    style="width: 70%;text-align: center;margin-left: 15%;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-center">
+                            <div style="display: inline-block; width: 30px;" class="mx-2">
+                                <img src="img/ethereum.jpg" alt="USDT" style="width:30px;height:30px;">
+                            </div>
+                            <div style="display: inline-block; width: 150px; height: 30px;" class="py-1 text-primary">
+                                Ethereum (ETH)
+                            </div>
+
+                        </div>
+
+                        <!-- <div class="alert" style="background-color: #f3ebf7;" role="alert">
+
+                            <div class="d-flex justify-content-between">
+                                <div class="text-dark fw-bold">
+                                    <div style="display: inline-block; width: 30px;">
+                                        <img src="img/uniswap.png" alt="etherium" style="width:30px;height:30px;">
+                                    </div>
+                                    Uniswap
+                                </div>
+
+                                <div class="text-dark fw-bold">
+                                    <div style="display: inline-block; width: 30px;">
+                                        <img src="img/kucoin.png" alt="etherium" style="width:30px;height:30px;">
+                                    </div>
+                                    Kucoin
+                                </div>
+
+                            </div>
+                        </div> -->
+
+                        <hr style="background-color: #000000;" />
+                        <label class="form-label"><b>Token/Coin</b></label>
+                        <select class="form-select" aria-label="Default select example" style="border-radius: 100px;">
+                            <option value="0" selected>Ethereum (ETH)</option>
+                            <option value="1">Bitcoin (BTC)</option>
+                            <option value="2">Polkadot (DOT)</option>
+                            <option value="3">Solana (SOL)</option>
+                        </select>
+
+                        <label class="form-label mt-2"><b>Number of days (Future)</b></label>
+                        <select class="form-select" aria-label="Default select example" style="border-radius: 100px;">
+                            <option value="0" selected>Next 1 day</option>
+                            <option value="1">Next 2 days</option>
+                            <option value="2">Next 3 days</option>
+                            <option value="3">Next 4 days</option>
+                            <option value="3">Next 5 days</option>
+                        </select>
+
+                        <div class="d-grid gap-2 mt-3">
+                            <button class="btn text-white" id="button-get-info"
+                                style="background-color: #991fdb; border-radius: 50px;" type="button">Get
+                                Prediction</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row g-4">
+                    <!-- Chart -->
+                    <div id="loader">
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="lading"></div>
+                    </div>
+
+                    <!-- Chart -->
+                    <div id="prediction-chart" class="col-sm-12 col-xl-12">
+                        <div class="row justify-content-center" style="margin-top: 5%;">
+                            <div style="display: inline-block;" class="py-1 text-primary">
+                                <h3 style="text-align: center;">Chart</h3>
+                            </div>
+                        </div>
+                        <canvas id="myChart1" style="margin-top: 5%;"></canvas>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <%- include('./libjs.ejs') %>
+
+    <!-- Template Javascript -->
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- <script src="js/index.js"></script> -->
+    <script src="js/price-prediction.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js"></script>
+    <script>
+
+    </script>
+</body>
+
+</html>

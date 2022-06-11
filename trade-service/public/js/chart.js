@@ -4,6 +4,7 @@ $("#button-get-info").click(function () {
     // let url_arbitrages = "http://66.42.61.9:3000/tokenTradedPair/findByTimeAndLimi";
     let url_arbitrages = "http://localhost:3000/arbitrage/findByTime"
 
+    $("#loader").show()
     $.ajax({
         url: url_arbitrages,
         type: "POST",
@@ -18,10 +19,14 @@ $("#button-get-info").click(function () {
         success: function (result) {
             let trades = result.result
             console.log(trades)
+
+            $("#arbitrages-chart").show()
             createChart1("myChart1", trades);
             createChart2("myChart2", trades);
+            $("#loader").hide()
         },
         error: function (err) {
+            $("#loader").hide()
             // check the err for error details
         }
     }); // ajax call closing
@@ -58,7 +63,7 @@ function createChart1(chartID, trades) {
                 {
                     label: 'Buy Kucoin - Sell Uniswap',
                     data: prices.reverse(),
-                    borderColor: 'black',
+                    borderColor: 'red',
                 }
             ]
         },
@@ -103,7 +108,7 @@ function createChart2(chartID, trades) {
                 {
                     label: 'Buy Uniswap - Sell Kucoin',
                     data: prices.reverse(),
-                    borderColor: 'black',
+                    borderColor: 'blue',
                 }
             ]
         },
@@ -128,6 +133,8 @@ $(function () {
     let current_time = new Date().toLocaleString();
     $("#current_time").text("Current Time " + current_time)
 
+    $("#loader").hide()
+    $("#arbitrages-chart").hide()
 });
 
 function formatDate(str) {

@@ -66,6 +66,14 @@ dataset_test = pd.read_csv('ETH_USD_PREDICT.csv')
 
 my_dataset_test = dataset_test
 
+df_prices = dataset_train['Open'].values
+# print(len(df_prices))
+# print(df_prices[len(df_prices)- 60:len(df_prices)])
+
+df_timeline = dataset_train['Date'].values
+# print(len(df_timeline))
+# print(df_timeline[len(df_timeline)- 60:len(df_timeline)])
+
 # next 1 day
 dataset_total = pd.concat((dataset_train['Open'], my_dataset_test['Open']), axis = 0)
 inputs = dataset_total[len(dataset_total) - len(my_dataset_test) - 60:].values
@@ -165,12 +173,17 @@ async def predict_part_class(payload: dict = Body(...)):
 
         print("predicted_stock_price_5: ", predicted_stock_price_5)
         response = {
-            "predicted_price_1":str(predicted_stock_price_1[0][0]),
-            "predicted_price_2":str(predicted_stock_price_2[1][0]),
-            "predicted_price_3":str(predicted_stock_price_3[2][0]),
-            "predicted_price_4":str(predicted_stock_price_4[3][0]),
-            "predicted_price_5":str(predicted_stock_price_5[4][0])
+            "prices": df_prices[len(df_prices)- 60:len(df_prices)].tolist(),
+            "timeline": df_timeline[len(df_timeline)- 60:len(df_timeline)].tolist(),
+            "prediction": {
+                "predicted_price_1":str(predicted_stock_price_1[0][0]),
+                "predicted_price_2":str(predicted_stock_price_2[1][0]),
+                "predicted_price_3":str(predicted_stock_price_3[2][0]),
+                "predicted_price_4":str(predicted_stock_price_4[3][0]),
+                "predicted_price_5":str(predicted_stock_price_5[4][0])
+            }
         }
+            
         return response
     except Exception as ex:
         print("An exception occurred: ",ex)

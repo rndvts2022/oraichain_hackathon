@@ -9,8 +9,8 @@ module.exports = function (app) {
                 return res.render('index');
             case 'token-pair-trade':
                 return res.render('token-pair-trade');
-            case 'history':
-                return res.render('history');
+            case 'price-prediction':
+                return res.render('price-prediction');
             case 'front-run':
                 return res.render('front-run');
             case 'chart':

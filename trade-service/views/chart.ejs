@@ -108,33 +108,32 @@
 
 
       <div class="container pt-4 px-4">
+        
+
         <div class="row g-4">
           <!-- Options -->
-          <div class="col-sm-12 col-xl-6">
+          <div class="col-sm-12 col-xl-12">
             <div class="row justify-content-center">
-              <div style="display: inline-block; width: 30px;">
-                <img src="img/uos.jpg" alt="UOS" style="width:30px;height:30px;">
-              </div>
-              <div style="display: inline-block; width: 30px;" class="mx-2">
-                <img src="img/tether-usdt.png" alt="USDT" style="width:30px;height:30px;">
-              </div>
-              <div style="display: inline-block; width: 150px; height: 30px;" class="py-1 text-primary">
-                UOS/USDT
+              <div style="display: inline-block;" class="py-1 text-primary">
+                <h1 style="text-align: center;"> ORAICHAIN HACKATHON 2022</h1>
+                <h2 style="text-align: center;"> Arbitrage Service</h2>
               </div>
             </div>
+
+            
+
             <div class="row my-3">
               <div class="col">
                 <!-- <div class="row mx-1 fs-5">Rate Different</div> -->
                 <div class="alert alert-success p-1" id="current_time" role="alert"
                   style="width: 70%;text-align: center;margin-left: 15%;">
-                  
                 </div>
               </div>
-              <!-- <div class="col fs-1 text-success"><i class="bi bi-caret-up-fill"></i> 5%</div> -->
             </div>
+
             <div class="alert" style="background-color: #f3ebf7;" role="alert">
-              
-              <div class="d-flex justify-content-between">
+
+              <div class="d-flex justify-content-center">
                 <div class="text-dark fw-bold">
                   <div style="display: inline-block; width: 30px;">
                     <img src="img/uniswap.png" alt="etherium" style="width:30px;height:30px;">
@@ -142,16 +141,25 @@
                   Uniswap
                 </div>
 
-                <div class="text-dark fw-bold">
+                <div class="text-dark fw-bold" style="margin-left: 5%;">
                   <div style="display: inline-block; width: 30px;">
                     <img src="img/kucoin.png" alt="etherium" style="width:30px;height:30px;">
                   </div>
                   Kucoin
                 </div>
-                
+
               </div>
             </div>
-            
+
+            <!-- <div class="row justify-content-center">
+              <div style="display: inline-block; width: 30px;">
+                <img src="img/uos.jpg" alt="UOS" style="width:30px;height:30px;">UOS
+              </div>
+              <div style="display: inline-block; width: 30px; margin-left: 5%;" class="mx-2">
+                <img src="img/tether-usdt.png" alt="USDT" style="width:30px;height:30px;">USDT
+              </div>
+            </div> -->
+
             <hr style="background-color: #000000;" />
             <label class="form-label"><b>Tokens</b></label>
             <select class="form-select" aria-label="Default select example" style="border-radius: 100px;">
@@ -179,7 +187,7 @@
               <option value="2">ETH/BNB</option>
               <option value="3">ETH/RACA</option>
             </select> -->
-            <input type="datetime-local" id="birthdaytime" style="margin-top: 5%;" name="birthdaytime">
+            <input type="datetime-local" id="birthdaytime" style="margin-top: 2%;" name="birthdaytime">
 
             <div class="d-grid gap-2 mt-3">
               <button class="btn text-white" id="button-get-info"
@@ -188,10 +196,22 @@
           </div>
 
           <!-- Chart -->
-          <div class="col-sm-12 col-xl-6">
+          <div id="loader">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="lading"></div>
+          </div>
+
+          <div id="arbitrages-chart" class="col-sm-12 col-xl-12">
             <div class="row justify-content-center" style="margin-top: 5%;">
               <div style="display: inline-block;" class="py-1 text-primary">
-                <h3 style="text-align: center;">Arbitrages Chart</h3>
+                <h3 style="text-align: center;">Arbitrages History Information - Chart</h3>
               </div>
             </div>
             <canvas id="myChart1" style="margin-top: 5%;height: 100%;"></canvas>
