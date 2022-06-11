@@ -1,8 +1,8 @@
 
 $("#button-get-info").click(function () {
 
-    let url_arbitrages = "http://66.42.61.9:8002/coin-predict/eth";
-    // let url_arbitrages = "http://localhost:3000/arbitrage/findByTime"
+    // let url_arbitrages = "http://66.42.61.9:8002/coin-predict/eth";
+    let url_arbitrages = "http://localhost:3000/ai/pricePrediction"
 
     $("#loader").show()
 
@@ -16,11 +16,11 @@ $("#button-get-info").click(function () {
             "number_next_date": 3
         }),
         success: function (result) {
-            let prices = result
-            console.log(prices)
-            createChart1("myChart1", prices);
-            $("#loader").hide()
-            $("#prediction-chart").show()
+            let data = result.result
+            // console.log(data)
+            createChart1("myChart1", data);
+            $("#loader").hide();
+            $("#prediction-chart").show();
         },
         error: function (err) {
             // check the err for error details
@@ -38,8 +38,6 @@ function createChart1(chartID, data) {
     price_chart = [];
     times = [];
 
-
-
     last_prices = data.prices
     last_timeline = data.timeline
 
@@ -49,10 +47,8 @@ function createChart1(chartID, data) {
             prediction_prices.push(last_prices[i])
         } else {
             prediction_prices.push(null)
-
         }
     }
-    
 
     prediction_prices.push(data.prediction.predicted_price_1)
     prediction_prices.push(data.prediction.predicted_price_2)
@@ -76,14 +72,14 @@ function createChart1(chartID, data) {
             labels: last_timeline,
             datasets: [
                 {
-                    label: 'Green - History Price',
+                    label: ' History Price',
                     data: last_prices,
                     borderColor: '#FFE0B2',
                     fill: true,
                     backgroundColor: '#FFE0B2'
                 },
                 {
-                    label: 'Blue - Prediction Price',
+                    label: ' Prediction Price',
                     data: prediction_prices,
                     borderColor: '#DDBAE3',
                     fill: true,
@@ -131,8 +127,14 @@ const getDays = (numberOfDays) => {
     let res = [];
     const currentDay = new Date();
     for (let index = 0; index < numberOfDays; index++) {
-      let nextDay = currentDay.setDate(currentDay.getDate() + 1);
-      res.push(new Date(nextDay).toJSON().slice(0, 10))
+        let nextDay = currentDay.setDate(currentDay.getDate() + 1);
+        res.push(new Date(nextDay).toJSON().slice(0, 10))
     }
     return res;
+}
+
+function convertUTCDateToLocalDate(date_to_convert_str) {
+    let date = new Date(date_to_convert_str)
+    var newDate = new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
+    return newDate.toJSON().slice(0, 19);
 }

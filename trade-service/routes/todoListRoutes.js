@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = function (app) {
+	const aiPredictionHandlers = require('../controllers/ai_prediction.js')
 	const arbitrageHandlers = require('../controllers/arbitrage.js')
 	const tokenHandlers = require('../controllers/tokenController.js')
 	const tokenTradedPairHandlers = require('../controllers/tokenTradePairController')
@@ -28,6 +29,8 @@ module.exports = function (app) {
 
 	app.route('/arbitrage/findByTime')
 		.post(arbitrageHandlers.findByTime);
+	app.route('/ai/pricePrediction')
+		.post(aiPredictionHandlers.pricePrediction);
 
 	app.route('/tokenTradedPair/time')
 		.post(tokenTradedPairHandlers.findByTime);

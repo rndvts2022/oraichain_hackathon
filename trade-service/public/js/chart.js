@@ -44,7 +44,7 @@ function createChart1(chartID, trades) {
 
             if (prices.length < 15) {
                 prices.push(trades[i].info.p)
-                times.push(formatDate(trades[i].created))
+                times.push(formatDate(convertUTCDateToLocalDate(trades[i].created)))
             } else {
                 break;
             }
@@ -89,7 +89,7 @@ function createChart2(chartID, trades) {
 
             if (prices.length < 15) {
                 prices.push(trades[i].info.p)
-                times.push(formatDate(trades[i].created))
+                times.push(formatDate(convertUTCDateToLocalDate(trades[i].created)))
             } else {
                 break;
             }
@@ -135,12 +135,20 @@ $(function () {
 
     $("#loader").hide()
     $("#arbitrages-chart").hide()
+
 });
 
 function formatDate(str) {
 
     // console.log(str.substring(0,10) + " " + str.substring(11, 19));
     // return str.substring(0,10) + " " + str.substring(11, 19);
-    return  str.substring(11, 19);
+    return str.substring(11, 19);
 
 }
+
+function convertUTCDateToLocalDate(date_to_convert_str) {
+    let date = new Date(date_to_convert_str)
+    var newDate = new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
+    return newDate.toJSON().slice(0, 19);
+}
+

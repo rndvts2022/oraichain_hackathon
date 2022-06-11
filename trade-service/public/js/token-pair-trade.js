@@ -7,23 +7,76 @@ let BuyKucoinSellUniswap_queue = new Queue();
 
 $(function () {
     /* init */
-    showView_CurrentBalance(undefined)
+    // showView_CurrentBalance(undefined)
 
     socket.emit('connection-status', "thuan connected");
     // socket.on('trade-info', function (data) {
     //     console.log(data)
     //     showView_CurrentBalance(data)
     // });
-    socket.on('token-pair-arbitrage', function (data) {
-        console.log(data)
-        if (data.typeTrade === "doBuyUniswapSellKucoin") {
-            showView_DoBuyUniswapSellKucoin(data)
-        } else if (data.typeTrade === 'doBuyKucoinSellUniswap') {
-            showView_DoBuyKucoinSellUniswap(data)
+
+    // socket.on('token-pair-arbitrage', function (data) {
+    //     console.log(data)
+    //     if (data.typeTrade === "doBuyUniswapSellKucoin") {
+    //         showView_DoBuyUniswapSellKucoin(data)
+    //     } else if (data.typeTrade === 'doBuyKucoinSellUniswap') {
+    //         showView_DoBuyKucoinSellUniswap(data)
+    //     }
+    //     // console.log(data.balanceAfterTrade)
+    //     showView_CurrentBalance(data.balanceAfterTrade)
+    // });
+
+    let url_arbitrages = "http://66.42.61.9:3000/tokenTradedPair/findByTimeAndLimit";
+    // let url_arbitrages = "http://localhost:3000/ai/pricePrediction"
+
+
+    $.ajax({
+        url: url_arbitrages,
+        type: "POST",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({
+            "symbol": "ETH",
+            "number_next_date": 3
+        }),
+        success: function (result) {
+            let data = result.result.reverse()
+            let buyUniswapSellKucoin = []
+            let buyKucoinSellUniswap = []
+
+            for (let i = 0; i < data.length; i++) {
+
+                item = data[i];
+                if (item.typeTrade === false) {
+
+                    buyUniswapSellKucoin.push(item)
+                    if (buyUniswapSellKucoin.length == 5) {
+                        continue;
+                    }
+                    showView_DoBuyUniswapSellKucoin(item)
+
+                } else if (item.typeTrade === true) {
+
+                    console.log("hello: ", item)
+
+                    buyKucoinSellUniswap.push(item)
+                    if (buyKucoinSellUniswap.length == 5) {
+                        continue;
+                    }
+                    showView_DoBuyKucoinSellUniswap(item)
+
+                }
+
+            }
+        },
+        error: function (err) {
+            // check the err for error details
         }
-        // console.log(data.balanceAfterTrade)
-        showView_CurrentBalance(data.balanceAfterTrade)
-    });
+    }); // ajax call closing
+
+    // console.log(data.balanceAfterTrade)
+    // showView_CurrentBalance(data.balanceAfterTrade)
+
 });
 
 function showView_CurrentBalance(data) {
@@ -97,6 +150,11 @@ function showView_DoBuyUniswapSellKucoin(data) {
 }
 
 function ViewFormat_DoBuyUniswapSellKucoin(data, index) {
+
+    let create_time = data.created
+    data = data.info
+    data.time = convertUTCDateToLocalDate(create_time)
+
     let item;
     let flash = ''
     if (index === 0) {
@@ -106,7 +164,7 @@ function ViewFormat_DoBuyUniswapSellKucoin(data, index) {
         item =
             `
             <tr>
-                <td ${flash}>${data.time}</td>
+                <td>${data.time}</td>
                 <td>${data.b1}</td>
                 <td>${data.g}</td>
                 <td>${data.M1}</td>
@@ -121,7 +179,7 @@ function ViewFormat_DoBuyUniswapSellKucoin(data, index) {
         item =
             `
             <tr>
-                <td ${flash}>${data.time}</td>
+                <td>${data.time}</td>
                 <td>${data.b1}</td>
                 <td>${data.g}</td>
                 <td>${data.M1}</td>
@@ -137,6 +195,8 @@ function ViewFormat_DoBuyUniswapSellKucoin(data, index) {
 }
 
 function showView_DoBuyKucoinSellUniswap(data) {
+    console.log(data)
+
 
     BuyKucoinSellUniswap_queue.enqueue(data);
     if (BuyKucoinSellUniswap_queue.size() === table_size) {
@@ -154,16 +214,23 @@ function showView_DoBuyKucoinSellUniswap(data) {
 }
 
 function ViewFormat_DoBuyKucoinSellUniswap(data, index) {
+
+    let create_time = data.created
+    data = data.info
+    data.time = convertUTCDateToLocalDate(create_time)
+
     let item;
     let flash = ''
     if (index === 0) {
         flash = `class="thuan-flash"`
     }
+
+    console.log(data.time)
     if (data.isExecution == true) {
         item =
             `
             <tr>
-                <td ${flash}>${data.time}</td>
+                <td>${data.time}</td>
                 <td>${data.b1}</td>
                 <td>${data.g}</td>
                 <td>${data.M1}</td>
@@ -178,7 +245,7 @@ function ViewFormat_DoBuyKucoinSellUniswap(data, index) {
         item =
             `
             <tr>
-                <td ${flash}>${data.time}</td>
+                <td>${data.time}</td>
                 <td>${data.b1}</td>
                 <td>${data.g}</td>
                 <td>${data.M1}</td>
@@ -191,4 +258,10 @@ function ViewFormat_DoBuyKucoinSellUniswap(data, index) {
         `
     }
     return item;
+}
+
+function convertUTCDateToLocalDate(date_to_convert_str) {
+    let date = new Date(date_to_convert_str)
+    var newDate = new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
+    return newDate.toJSON().slice(0, 19);
 }
