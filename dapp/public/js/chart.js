@@ -1,9 +1,11 @@
 
+var myChart1, myChart2;
 $("#button-get-info").click(function () {
 
     // let url_arbitrages = "http://66.42.61.9:3000/tokenTradedPair/findByTimeAndLimi";
-    let url_arbitrages = "http://localhost:3000/arbitrage/findByTime"
+    let url_arbitrages = "http://localhost:3002/arbitrage/findByTime"
 
+    clearCharts()
     $("#loader").show()
     $.ajax({
         url: url_arbitrages,
@@ -55,7 +57,7 @@ function createChart1(chartID, trades) {
     const ctx = document.getElementById(chartID).getContext('2d');
     const DATA_COUNT = 7;
     const NUMBER_CFG = { count: DATA_COUNT, min: -100, max: 100 };
-    const myChart = new Chart(ctx, {
+    myChart1 = new Chart(ctx, {
         type: 'line',
         data: {
             labels: times.reverse(),
@@ -100,7 +102,7 @@ function createChart2(chartID, trades) {
     const ctx = document.getElementById(chartID).getContext('2d');
     const DATA_COUNT = 7;
     const NUMBER_CFG = { count: DATA_COUNT, min: -100, max: 100 };
-    const myChart = new Chart(ctx, {
+    myChart2 = new Chart(ctx, {
         type: 'line',
         data: {
             labels: times.reverse(),
@@ -121,6 +123,16 @@ function createChart2(chartID, trades) {
             }
         }
     });
+}
+
+function clearCharts() {
+    if (myChart1 != null) {
+        myChart1.destroy();
+    }
+
+    if (myChart2 != null) {
+        myChart2.destroy();
+    }
 }
 
 $(function () {

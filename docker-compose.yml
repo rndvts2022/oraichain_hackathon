@@ -1,49 +1,101 @@
 version: "2"
 
 networks:
-  trade_network:
+  arbitrage_network:
     driver: bridge
 
 services:
 
-  mongodb: 
-    image: mongo:latest
-    container_name: mongodb
-    ports:
-        - "27017:27017" # specify port forewarding
-    restart: always
-    volumes: 
-        - /mongodb:/data/db
-    networks:
-        - trade_network
+    mongodb: 
+        image: mongo:latest
+        container_name: mongodb
+        ports:
+            - "27017:27017" # specify port forewarding
+        restart: always
+        volumes: 
+            - /mongodb:/data/db
+        networks:
+            - arbitrage_network
 
-  trade-service: #name of the second service
-    build: ./trade-service
-    image: quangthuan1007/trade-service:1.0
-    container_name: trade-service
-    ports:
-        - "3000:3000" #specify ports forewarding
-    restart: always
-    environment:
-        - APP_PORT=3000
-        - MONGO_URL=mongodb://mongodb/trade
-    links:
-        - mongodb
-    networks:
-        - trade_network
+    arbitrages-service: #name of the second service
+        build: ./arbitrages-service
+        image: trade-service:1.0
+        container_name: arbitrages-service
+        ports:
+            - "3000:3000" #specify ports forewarding
+        restart: always
+        environment:
+            - APP_PORT=3000
+            - MONGO_URL=mongodb://mongodb/trade
+        links:
+            - mongodb
+        networks:
+            - arbitrage_network
   
-  arbitrage-bot: #name of the second service
-    build: ./arbitrage-bot
-    image: quangthuan1007/arbitrage-bot:1.0
-    container_name: arbitrage-bot
-    ports:
-        - "3001:3001" #specify ports forewarding
-    restart: always
-    environment:
-        - TRADE_SERVICE=http://trade-service:3000/arbitrage
-        # - APP_PORT=3001
-        - MONGO_URL=mongodb://mongodb/trade
-    links:
-        - trade-service
-    networks:
-        - trade_network
+    arbitrage-bot: #name of the second service
+        build: ./arbitrage-bot
+        image: quangthuan1007/arbitrage-bot:1.0
+        container_name: arbitrage-bot
+        ports:
+            - "3001:3001" #specify ports forewarding
+        restart: always
+        environment:
+            - TRADE_SERVICE=http://trade-service:3000/arbitrage
+            # - APP_PORT=3001
+            - MONGO_URL=mongodb://mongodb/trade
+        links:
+            - arbitrages-service
+        networks:
+            - arbitrage_network
+
+    price-prediction-service:
+        build: 
+        context: ./price-prediction-service
+        dockerfile: Dockerfile
+        image: 'price-prediction-service'
+        # restart: unless-stopped
+        ports: ['8002:8002']
+
+# services:
+
+#   mongodb: 
+#     image: mongo:latest
+#     container_name: mongodb
+#     ports:
+#         - "27017:27017" # specify port forewarding
+#     restart: always
+#     volumes: 
+#         - /mongodb:/data/db
+#     networks:
+#         - trade_network
+
+#   trade-service: #name of the second service
+#     build: ./trade-service
+#     image: quangthuan1007/trade-service:1.0
+#     container_name: trade-service
+#     ports:
+#         - "3000:3000" #specify ports forewarding
+#     restart: always
+#     environment:
+#         - APP_PORT=3000
+#         - MONGO_URL=mongodb://mongodb/trade
+#     links:
+#         - mongodb
+#     networks:
+#         - trade_network
+  
+#   arbitrage-bot: #name of the second service
+#     build: ./arbitrage-bot
+#     image: quangthuan1007/arbitrage-bot:1.0
+#     container_name: arbitrage-bot
+#     ports:
+#         - "3001:3001" #specify ports forewarding
+#     restart: always
+#     environment:
+#         - TRADE_SERVICE=http://trade-service:3000/arbitrage
+#         # - APP_PORT=3001
+#         - MONGO_URL=mongodb://mongodb/trade
+#     links:
+#         - trade-service
+#     networks:
+#         - trade_network

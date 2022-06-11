@@ -1,10 +1,14 @@
 
+var selected_coin_value = 0;
+var myChart;
+
 $("#button-get-info").click(function () {
 
     // let url_arbitrages = "http://66.42.61.9:8002/coin-predict/eth";
-    let url_arbitrages = "http://localhost:3000/ai/pricePrediction"
+    let url_arbitrages = "http://localhost:3002/ai/pricePrediction"
 
     $("#loader").show()
+    clearChart1("myChart1")
 
     $.ajax({
         url: url_arbitrages,
@@ -16,7 +20,7 @@ $("#button-get-info").click(function () {
             "number_next_date": 3
         }),
         success: function (result) {
-            let data = result.result
+            let data = getDataBySelectedCoin(selected_coin_value, result.result)
             // console.log(data)
             createChart1("myChart1", data);
             $("#loader").hide();
@@ -66,7 +70,7 @@ function createChart1(chartID, data) {
     const ctx = document.getElementById(chartID).getContext('2d');
     const DATA_COUNT = 7;
     const NUMBER_CFG = { count: DATA_COUNT, min: -100, max: 100 };
-    const myChart = new Chart(ctx, {
+    myChart = new Chart(ctx, {
         type: 'line',
         data: {
             labels: last_timeline,
@@ -98,6 +102,11 @@ function createChart1(chartID, data) {
     });
 }
 
+function clearChart1() {
+    if (myChart != null) {
+        myChart.destroy();
+    }
+}
 
 $(function () {
 
@@ -112,7 +121,40 @@ $(function () {
     $("#loader").hide()
     $("#prediction-chart").hide()
 
+
+
 });
+
+function changeSelectedCoin() {
+    selected_coin_value = document.getElementById("selected-coin").value;
+    console.log(selected_coin_value)
+
+    if (selected_coin_value == 0) {
+        $("#chart-title").text("History and Price Prediction Ethrerum (ETH)")
+    }
+    else if (selected_coin_value == 1) {
+        $("#chart-title").text("History and Price Prediction Bitcoin (BTC)")
+    } else {
+        $("#chart-title").text("History and Price Prediction Ethrerum (ETH)")
+    }
+
+}
+
+function getDataBySelectedCoin(selected, data) {
+
+    if (selected == 0) {
+        $("#chart-title").text("History and Price Prediction Ethrerum (ETH)")
+        return data.eth
+    }
+
+    if (selected == 1) {
+        $("#chart-title").text("History and Price Prediction Bitcoin (BTC)")
+        return data.btc
+    }
+
+    $("#chart-title").text("History and Price Prediction Ethrerum (ETH)")
+    return data.eth
+}
 
 function formatDate(str) {
 

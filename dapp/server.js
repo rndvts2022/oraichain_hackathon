@@ -1,7 +1,7 @@
 // khai báo library
 const express = require('express'),
     app = express(),
-    port = process.env.APP_PORT || 3000,
+    port = process.env.APP_PORT || 3002,
     path = require('path'),
     session = require('express-session'),
     cors = require('cors'),

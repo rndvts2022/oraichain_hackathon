@@ -103,8 +103,8 @@ const demo = async () => {
   // console.log('request id: ', requestId)
   // console.log('Collecting the reports, please wait...')
   const reports = await collectReports(backendUrl, contractAddr, requestId)
+  console.log('data: ', reports)
   return reports;
-  // console.log('data: ', reports)
 }
 
 const getArbitrage = async (contractAddr, lcdUrl, service, threshold) => {
@@ -220,4 +220,6 @@ exports.findByTime = async function (req, res) {
 
 };
 
+
+// demo()
 
