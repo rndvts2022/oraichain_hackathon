@@ -233,6 +233,6 @@ exports.pricePrediction = async function (req, res) {
 
 };
 
-price_prediction();
+// price_prediction();
 
 

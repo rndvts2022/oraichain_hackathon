@@ -47,28 +47,28 @@
                     <p style="color: gray; text-align: left;">And finally, we got profit: 1111 - 1000 = 111 USDT</p>
 
                     <h6 class="mb-0" style="color: blueviolet; text-align: left;">Formula explain like that:</h6>
-                    <p style="color: gray; text-align: left;">let t = 10 (USDT); threshold of profit consider do
+                    <p style="color: gray; text-align: left;"> <b>t = 10 (USDT)</b>: threshold of profit consider do
                         execution </p>
-                    <p style="color: gray; text-align: left;">let g = 1 (USDT); current gas price on network (Ethereum
+                    <p style="color: gray; text-align: left;"> <b>g = 1 (USDT)</b>: current gas price on network (Ethereum
                         Network, BSC Network, Matic Network...)</p>
-                    <p style="color: gray; text-align: left;">let kFees = 0.008 ~ (0.8%); Kucoin Fee on Trading</p>
-                    <p style="color: gray; text-align: left;">let uFees = 0.008 ~ (0.8%); Uniswap Fee on Trading</p>
+                    <p style="color: gray; text-align: left;"> <b>kFees = 0.008 ~ (0.8%)</b>: Kucoin Fee on Trading</p>
+                    <p style="color: gray; text-align: left;"> <b>uFees = 0.008 ~ (0.8%)</b>: Uniswap Fee on Trading</p>
 
-                    <p style="color: gray; text-align: left;">let b1 = 1000; (unit: USDT), number of USDT to buy UOS
+                    <p style="color: gray; text-align: left;"> <b>b1 = 1000</b>: (unit: USDT), number of USDT to buy UOS
                         from Uniswap</p>
-                    <p style="color: gray; text-align: left;">let M1; (unit: USDT/UOS): rate of Token pair on Uniswap
+                    <p style="color: gray; text-align: left;"> <b>M1: (unit: USDT/UOS)</b>: rate of Token pair on Uniswap
                     </p>
-                    <p style="color: gray; text-align: left;">let P1 = M1 * b1 * (1 - uFees); (unit: UOS), number of UOS
+                    <p style="color: gray; text-align: left;"> <b>P1 = M1 * b1 * (1 - uFees)</b>: (unit: UOS), number of UOS
                         after swap on Uniswap</p>
-                    <p style="color: gray; text-align: left;">let n2 = 50; the last numbers of orderbooks on kucoin</p>
-                    <p style="color: gray; text-align: left;">let M2; (unit: UOS/USDT): average rate of Token pair on
+                    <p style="color: gray; text-align: left;"> <b>n2 = 50</b> the last numbers of orderbooks on kucoin</p>
+                    <p style="color: gray; text-align: left;"> <b>M2: (unit: UOS/USDT)</b>: average rate of Token pair on
                         Kucoin, use asks orderbooks: sell-side on Kucoin</p>
-                    <p style="color: gray; text-align: left;">let P2 = M2 * P1 * (1 - kFees); (unit USDT), number of
+                    <p style="color: gray; text-align: left;"><b>P2 = M2 * P1 * (1 - kFees)</b>: (unit USDT), number of
                         USDT after trading on Kucoin</p>
 
-                    <p style="color: gray; text-align: left;">let p = P2 - b1 - g; (unit USDT), final Profit after
+                    <p style="color: gray; text-align: left;"> <b>p = P2 - b1 - g</b>: (unit USDT), final Profit after
                         arbitrage</p>
-                    <p style="color: gray; text-align: left;">let isExecution; (unit: Yes|No) if p > t -> do arbitrage
+                    <p style="color: gray; text-align: left;"> <b>Execution</b>: (unit: Yes|No) if p > t -> do arbitrage
                         else do not </p>
 
                     <div class="table-responsive">
@@ -110,29 +110,29 @@
                     <p style="color: gray; text-align: left;">And finally, we got profit: 1111 - 1000 = 111 USDT</p>
 
                     <h6 class="mb-0" style="color: blueviolet; text-align: left;">Formula explain like that:</h6>
-                    <p style="color: gray; text-align: left;">let t = 10 (USDT); threshold of profit consider do
+                    <p style="color: gray; text-align: left;"> <b>t = 10 (USDT)</b>: threshold of profit consider do
                         execution </p>
-                    <p style="color: gray; text-align: left;">let g = 1 (USDT); current gas price on network (Ethereum
+                    <p style="color: gray; text-align: left;"> <b>g = 1 (USDT)</b>: current gas price on network (Ethereum
                         Network, BSC Network, Matic Network...)</p>
-                    <p style="color: gray; text-align: left;">let kFees = 0.008 ~ (0.8%); Kucoin Fee on Trading</p>
-                    <p style="color: gray; text-align: left;">let uFees = 0.008 ~ (0.8%); Uniswap Fee on Trading</p>
+                    <p style="color: gray; text-align: left;"> <b>kFees = 0.008 ~ (0.8%)</b>: Kucoin Fee on Trading</p>
+                    <p style="color: gray; text-align: left;"> <b>uFees = 0.008 ~ (0.8%)</b>: Uniswap Fee on Trading</p>
 
-                    <p style="color: gray; text-align: left;">let b1 = 1000; (unit: UOS), number of UOS need to buy from
+                    <p style="color: gray; text-align: left;"> <b>b1 = 1000</b>: (unit: UOS), number of UOS need to buy from
                         Kucoin</p>
-                    <p style="color: gray; text-align: left;">let n1 = 50; the last numbers of orderbooks on kucoin</p>
-                    <p style="color: gray; text-align: left;">let M1; (unit: UOS/USDT): average rate of Token pair on
+                    <p style="color: gray; text-align: left;"> <b>n1 = 50</b>: the last numbers of orderbooks on kucoin</p>
+                    <p style="color: gray; text-align: left;"> <b>M1; (unit: UOS/USDT)</b>: average rate of Token pair on
                         Kucoin, use bids orderbooks: buy-side on Kucoin</p>
-                    <p style="color: gray; text-align: left;">let P1 = b1 * M1 * (1 - kFees);; (unit: USDT), total of
+                    <p style="color: gray; text-align: left;"> <b>P1 = b1 * M1 * (1 - kFees)</b>: (unit: USDT), total of
                         USDT need to pay after buying UOS from Kucoin</p>
 
-                    <p style="color: gray; text-align: left;">let M2; (unit: UOS/USDT): rate of Token pair on Uniswap
+                    <p style="color: gray; text-align: left;"> <b>M2; (unit: UOS/USDT)</b>: rate of Token pair on Uniswap
                     </p>
-                    <p style="color: gray; text-align: left;">let P2 = M2 * b1 * (1 - uFees);; (unit USDT), number of
+                    <p style="color: gray; text-align: left;"> <b>P2 = M2 * b1 * (1 - uFees)</b>: (unit USDT), number of
                         USDT after trading on Kucoin</p>
 
-                    <p style="color: gray; text-align: left;">let p = P2 - P1 - g; (unit USDT), final Profit after
+                    <p style="color: gray; text-align: left;"> <b>p = P2 - P1 - g</b>: (unit USDT), final Profit after
                         arbitrage</p>
-                    <p style="color: gray; text-align: left;">let isExecution; (unit: Yes|No) if p > t -> do arbitrage
+                    <p style="color: gray; text-align: left;"> <b>Execution (unit: Yes|No) </b>: if p > t -> do arbitrage
                         else do not </p>
 
                     <div class="table-responsive">
@@ -160,7 +160,7 @@
             <!-- Recent Sales End -->
 
             <!-- Footer Start -->
-            <%- include('./foot.ejs') %>
+            <!-- <%- include('./foot.ejs') %> -->
             <!-- Footer End -->
         </div>
         <!-- Content End -->
